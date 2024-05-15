@@ -1,12 +1,13 @@
-import { useEffect/* , useContext */ } from "react";
-
-// import { EventoInfoContext } from "../context/EventoInfoContext";
+import { useEffect, useContext } from "react";
 
 import { StyleSheet, Text, View } from "react-native";
 import { Link } from "react-router-native"; 
 
 // Components
 import Navbar from "../components/Navbar";
+
+// Context
+import { MyContext } from "../context/index";
 
 const MenuOpt = ({ children, to }) => {
     return (
@@ -18,12 +19,7 @@ const MenuOpt = ({ children, to }) => {
 
 function Menu() {
 
-    // const { setEventoInfo } = useContext(EventoInfoContext)
-
-    // useEffect(() => {
-	// 	console.log('Ingresando al menú principal')
-    //     setEventoInfo({ id: "", estado: false, productos: [] })
-	// }, []);
+    const { myContext/* , setMyContext */ } = useContext(MyContext) // Unused set
 
     useEffect(() => {
 		console.log('Getting menu view')
@@ -39,6 +35,7 @@ function Menu() {
             <Text style={styles.menuText}>MENU</Text>
             <MenuOpt to='/item-list'>LIST</MenuOpt>
             <MenuOpt to='/form'>FORM</MenuOpt>
+            <Text style={styles.menuText}>{myContext.text}</Text>
         </View>
     )
 }
